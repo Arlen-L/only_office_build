@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-lasted
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -20,7 +20,6 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get install -y python git
-        sudo rm -rf /usr/local/bin/grunt
     - name: Clone source code
       run: |
         git clone https://github.com/ONLYOFFICE/build_tools.git 
