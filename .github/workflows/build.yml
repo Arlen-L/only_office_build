@@ -29,11 +29,11 @@ jobs:
         exit 1
         fi
         sed -i '108,$d' build_tools/make.py  #不构建，只把依赖打包
-    - name:  get the depends
+    - name:  Get depends
       run: |
         cd build_tools/tools/linux
         ./automate.py
-    - name : zip packages
+    - name : Zip packages
       run: |
         mkdir -p /opt/depens/
         cd ../../../
