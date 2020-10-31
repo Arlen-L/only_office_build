@@ -20,12 +20,13 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get install -y python git
+        rm -rf /usr/local/bin/grunt
     - name: Clone source code
       run: |
         git clone https://github.com/ONLYOFFICE/build_tools.git 
         cd build_tools/tools/linux
         ./automate.py
-    - name : Upload packages
+    - name : zip packages
       run: |
         zip -q -r /opt/depens/depens.zip ../../../`ls *|egrep -v build_tools`
     - name : Upload packages
