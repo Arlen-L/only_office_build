@@ -21,9 +21,16 @@ jobs:
       run: |
         sudo apt-get install -y python git
         sudo rm -rf /usr/local/bin/grunt
-    - name: Clone source code
+    - name: Clone source code and alter it
       run: |
         git clone https://github.com/ONLYOFFICE/build_tools.git 
+        if [ ! -f build_tools/make.py ] ; then
+        echo "build_tools/make.py not found "
+        exit 1
+        fi
+        sed -i '108,$d' build_tools/make.py  #不构建，只把依赖打包
+    - name:  get the depends
+      run: |
         cd build_tools/tools/linux
         ./automate.py
     - name : zip packages
