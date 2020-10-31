@@ -20,7 +20,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get install -y python git
-        rm -rf /usr/local/bin/grunt
+        sudo rm -rf /usr/local/bin/grunt
     - name: Clone source code
       run: |
         git clone https://github.com/ONLYOFFICE/build_tools.git 
