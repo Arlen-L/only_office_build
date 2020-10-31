@@ -35,7 +35,9 @@ jobs:
         ./automate.py
     - name : zip packages
       run: |
-        zip -q -r /opt/depens/depens.zip ../../../`ls *|egrep -v build_tools`
+        mkdir -p /opt/depens/
+        cd ../../../
+        zip -qr /opt/depens/depens.zip `ls|egrep -v 'build_tools'`
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
