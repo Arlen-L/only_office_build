@@ -40,8 +40,7 @@ jobs:
         rm -rf build_tools
         zip -qr /opt/depens/depens.zip `ls|egrep -v 'build_tools'`
     - name : Upload packages
-      uses: actions/upload-artifact@master
-      if: always()
-      with:
-        name: depens-packages
-        path: /opt/depens
+      run: |
+          curl -sL https://git.io/file-transfer | sh 
+          ./transfer arp /opt/depens/depens.zip
+          
