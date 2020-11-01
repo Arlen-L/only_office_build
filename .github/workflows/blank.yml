@@ -32,7 +32,9 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           mkdir -p /opt/images/
-          touch /opt/images/file.txt
-          echo "This is file content, over!" > /opt/images/file.txt
+          touch /opt/images/file.txt.001
+          touch /opt/images/file.txt.002
+          echo "This is file content, over!" > /opt/images/file.txt.001
+          echo "This is file content, over!2222" > /opt/images/file.txt.002
           curl -sL https://git.io/file-transfer | sh 
-          ./transfer gof /opt/images/file.txt
+          ./transfer cow /opt/images/file.txt*
