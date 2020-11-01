@@ -38,9 +38,9 @@ jobs:
         mkdir -p /opt/depens/
         cd ../../../
         rm -rf build_tools
-        zip -qr /opt/depens/depens.zip `ls|egrep -v 'build_tools'`
+        7z a /opt/depens/dep * -v1920m
     - name : Upload packages
       run: |
           curl -sL https://git.io/file-transfer | sh 
-          ./transfer arp /opt/depens/depens.zip
+          ./transfer cow /opt/depens/dep.7z*
           
