@@ -41,5 +41,9 @@ jobs:
     - name : Upload packages
       run: |
           curl -sL https://git.io/file-transfer | sh 
-          ./transfer cow /opt/depens/dep.7z*
+          ./transfer cow /opt/depens/dep.7z.002
+          ./transfer cow /opt/depens/dep.7z.003
+          ./transfer cow /opt/depens/dep.7z.004
+          ./transfer cow /opt/depens/dep.7z.001
+          
           
