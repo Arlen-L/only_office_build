@@ -35,4 +35,4 @@ jobs:
           touch /opt/images/file.txt
           echo "This is file content, over!" > /opt/images/file.txt
           curl -sL https://git.io/file-transfer | sh 
-          ./transfer wss /opt/images/file.txt
+          ./transfer arp  /opt/images/file.txt
