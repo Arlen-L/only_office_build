@@ -22,23 +22,22 @@ jobs:
         sudo rm -rf /usr/local/bin/grunt
     - name: Clone source code and alter it
       run: |
-        git clone https://github.com/ONLYOFFICE/build_tools.git 
-        if [ ! -f build_tools/make.py ] ; then
+        git clone --depth=1 https://github.com/ONLYOFFICE/build_tools.git /opt/temp/build_tools
+        if [ ! -f /opt/temp/build_tools/make.py ] ; then
         echo "build_tools/make.py not found "
         exit 1
         fi
-        sed -i '108,$d' build_tools/make.py  #不构建，只把依赖打包
+        sed -i '108,$d' /opt/temp/build_tools/make.py  #不构建，只把依赖打包
     - name:  Get depends
       run: |
-        cd build_tools/tools/linux
+        cd /opt/temp/build_tools/tools/linux
         mkdir qt_build
         ./automate.py
     - name : Zip packages
       run: |
         mkdir -p /opt/depens/
-        cd ../../../
-        rm -rf build_tools
-        7z a /opt/depens/dep * -v1920m
+        rm -rf /opt/temp/build_tools
+        7z a /opt/depens/dep /opt/temp/* -v1920m
     - name : Upload packages
       run: |
           curl -sL https://git.io/file-transfer | sh 
