@@ -42,10 +42,10 @@ jobs:
       run: |
         mkdir -p /opt/depens/
         rm -rf /opt/temp/build_tools
-        7z a /opt/depens/dep /opt/temp/* -v1920m
+        7z a /opt/depens/dep /opt/temp/* -v1024m
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages
+        name: dep-packages
         path: /opt/depens
