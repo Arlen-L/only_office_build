@@ -40,7 +40,7 @@ jobs:
     - name:  Zip package
       run: |
         mkdir /opt/out
-        sudo cd `ls | find /opt/temp/ -name out.gn`
+        cd `ls | find /opt/temp/ -name out.gn`
         sudo tar -cvf /opt/out/out.tar *
     - name: Create Release
       id: create_release
