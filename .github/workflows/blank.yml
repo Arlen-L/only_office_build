@@ -36,12 +36,7 @@ jobs:
         git checkout 6.0-lkgr
         gclient sync
         y
-        y
-        y
         ./build/install-build-deps.sh
-        y
-        y
-        y
         tools/dev/v8gen.py mips64el.release
         gn args out.gn/mips64el.release --list
         ninja -C out.gn/mips64el.release
