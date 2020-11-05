@@ -34,6 +34,7 @@ jobs:
         fetch v8
         cd v8
         gclient sync
+        git checkout 6.0-lkgr
         ./build/install-build-deps.sh
         tools/dev/v8gen.py mips64el.release
         ninja -C out.gn/mips64el.release
