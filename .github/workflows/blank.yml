@@ -37,9 +37,14 @@ jobs:
         ./build/install-build-deps.sh
         tools/dev/v8gen.py mips64el.release
         ninja -C out.gn/mips64el.release
+    - name:  Zip package
+      run: |
+        mkdir /opt/out
+        cd /opt/temp/v8/out.gn/
+        sudo tar -cvf /opt/out/out.tar *
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: dep-packages
-        path: /opt/temp
+        path: /opt/out
