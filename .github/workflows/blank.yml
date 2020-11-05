@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: V8
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
@@ -24,28 +24,27 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo rm -rf /usr/local/bin/grunt
+        apt-get install git
     - name: Clone source code and alter it
       run: |
-        git clone --depth=1 https://github.com/ONLYOFFICE/build_tools.git /opt/temp/build_tools
-        if [ ! -f /opt/temp/build_tools/make.py ] ; then
-        echo "build_tools/make.py not found "
-        exit 1
-        fi
-        sed -i '108,$d' /opt/temp/build_tools/make.py  #不构建，只把依赖打包
+        mkdir /opt/temp
+        cd /opt/temp/
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        export PATH=/opt/temp/depot_tools:$PATH
     - name:  Get depends
       run: |
-        cd /opt/temp/build_tools/tools/linux
-        mkdir qt_build
-        ./automate.py
-    - name : Zip packages
-      run: |
-        mkdir -p /opt/depens/
-        rm -rf /opt/temp/build_tools
-        7z a /opt/depens/dep /opt/temp/* -v1024m
+        gclient
+        mkdir /opt/temp/v8
+        cd /opt/temp/v8/
+        fetch v8
+        cd v8
+        gclient sync
+        ./build/install-build-deps.sh
+        tools/dev/v8gen.py mips64el.release
+        ninja -C out.gn/mips64el.release
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: dep-packages
-        path: /opt/depens
+        path: /opt/temp
