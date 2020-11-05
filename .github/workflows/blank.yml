@@ -33,10 +33,11 @@ jobs:
         cd /opt/temp/v8/
         fetch v8
         cd v8
-        gclient sync
         git checkout 6.0-lkgr
+        gclient sync
         ./build/install-build-deps.sh
         tools/dev/v8gen.py mips64el.release
+        gn args out.gn/mips64el.release --list
         ninja -C out.gn/mips64el.release
     - name:  Zip package
       run: |
