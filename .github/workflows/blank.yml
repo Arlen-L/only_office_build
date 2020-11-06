@@ -34,7 +34,7 @@ jobs:
         fetch v8
         cd v8
         gclient sync
-        gn gen out.gn/mips64el.release --args="is_debug=false is_clang=true use_sysroot=false treat_warnings_as_errors=false v8_target_cpu=\"mipse64el\" target_cpu=\"mipse64el\" v8_static_library=true is_component_build=false v8_use_snapshot=false target_os=\"linux\" mips_arch_variant=\"loongson3\" mips_use_mmi=true"
+        gn gen out.gn/mips64el.release --args=`is_debug=false is_clang=true use_sysroot=false treat_warnings_as_errors=false v8_target_cpu="mipse64el" target_cpu="mipse64el" v8_static_library=true is_component_build=false v8_use_snapshot=false target_os="linux"`
         gn args out.gn/mips64el.release --list
         ninja -C out.gn/mips64el.release
     - name:  Zip package
