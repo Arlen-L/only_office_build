@@ -35,7 +35,7 @@ jobs:
         cd v8
         git checkout 6.0-lkgr
         gclient sync
-        gn gen out.gn/mips64el.release --args="is_debug=false is_clang=true use_sysroot=false treat_warnings_as_errors=false target_cpu=\"mipse64el\" v8_target_cpu=\"mipse64el\" v8_static_library=true is_component_build=false v8_use_snapshot=false"
+        gn gen out.gn/mips64el.release "--args=is_debug=false is_clang=true use_sysroot=false treat_warnings_as_errors=false target_cpu=\"mipse64el\" v8_target_cpu=\"mipse64el\" v8_static_library=true is_component_build=false v8_use_snapshot=false"
         gn args out.gn/mips64el.release --list
         ninja -C out.gn/mips64el.release
     - name:  Zip package
